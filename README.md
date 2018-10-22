@@ -13,8 +13,8 @@ At the same time it provided enhanced and more uniform functionality.
 
 Dormapi works with Sequelize ORM and Express JS API.
 
-- Add an API file:
-```
+- Add an API file, `core.yml`, next to your top-level Express App:
+```yaml
 PersonName:
   fields:
     prefix: STRING
@@ -43,4 +43,36 @@ UserGroup:
     Members:
       hasMany: PersonName
 
+```
+
+- Add the endpoint routes to the App, e.g. in `index.js`:
+```javascript
+const dormapi = require('dormapi');
+const { models, routes } = dormapi.loadApiSync(['./core.yml']);
+
+// setup routes
+app.use('/', routes);
+
+
+// to be used elsewhere
+app.set('apiModels', models);
+```
+
+- The `models` object has Sequelize models for use in custom business logic, e.g.
+```javascript
+  const models = app.get('apiModels');
+  ...
+
+  const numGroups = models.UserGroup.count();
+
+  ...
+```
+
+- Also, to run Sequelize migrations, once a DB connection has been established:
+```javascript
+  ...
+
+  app.get('apiModels').SequelizeMeta.runMigration();
+
+  ...
 ```
