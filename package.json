@@ -1,0 +1,33 @@
+{
+  "name": "dormapi",
+  "version": "0.4.0",
+  "description": "Declarative ORM and API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hughsw/dormapi.git"
+  },
+  "keywords": [
+    "express",
+    "sequelize",
+    "orm",
+    "api",
+    "migrate",
+    "migration",
+    "boilerplate"
+  ],
+  "author": "Hugh Secker-Walker",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/hughsw/dormapi/issues"
+  },
+  "homepage": "https://github.com/hughsw/dormapi#readme",
+  "dependencies": {
+    "express": "4.16.4",
+    "sequelize": "4.41.0"
+  },
+  "devDependencies": {}
+}
