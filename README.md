@@ -53,26 +53,22 @@ const { models, routes } = dormapi.loadApiSync(['./core.yml']);
 // setup routes
 app.use('/', routes);
 
-
-// to be used elsewhere
+// models to be used elsewhere
 app.set('apiModels', models);
 ```
 
 - The `models` object has Sequelize models for use in custom business logic, e.g.
 ```javascript
   const models = app.get('apiModels');
-  ...
 
-  const numGroups = models.UserGroup.count();
-
+  ... in an async function
+    const numGroups = await models.UserGroup.count();
   ...
 ```
 
 - Also, to run Sequelize migrations, once a DB connection has been established:
 ```javascript
-  ...
-
-  app.get('apiModels').SequelizeMeta.runMigration();
-
+  ... in an async function
+  await app.get('apiModels').SequelizeMeta.runMigration();
   ...
 ```
